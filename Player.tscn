@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://assets/hero/idle.png" type="Texture" id=2]
+[ext_resource path="res://assets/hero/run.png" type="Texture" id=3]
+[ext_resource path="res://assets/hero/atk1.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=3]
+resource_name = "attack1"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("attack1:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "idle"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("idle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "run"
+length = 2.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("run:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[node name="Player" type="RigidBody2D"]
+position = Vector2( 103, 52 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="idle" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+hframes = 2
+frame = 1
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+anims/attack1 = SubResource( 3 )
+anims/idle = SubResource( 1 )
+anims/run = SubResource( 2 )
+
+[node name="run" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+hframes = 8
+
+[node name="attack1" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+hframes = 4
